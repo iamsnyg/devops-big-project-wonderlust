@@ -57,6 +57,14 @@ pipeline {
         stage("SonarQube: Code Quality Analysis"){
             steps {
                 script {
+                    sonarqube_analysis('Sonar', "wanderlust", "wanderlust")
+                }
+            }
+        }
+
+        stage("SonarQube: Code Quality Gate"){
+            steps {
+                script {
                     sonarqube_code_quality()
                 }
             }
