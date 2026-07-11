@@ -1,43 +1,43 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: redis-deployment
-    namespace: wanderlust
-    labels:
-        app: redis
+  name: redis-deployment
+  namespace: wanderlust
+  labels:
+    app: redis
 spec:
-    selector:
-        matchLabels:
-            app: redis
-    replicas: 1
-    template:
-        metadata:
-            labels:
-                app: redis
-        spec:
-            containers:
-                - name: redis
-                  image: redis:latest
-                  ports:
-                      - containerPort: 6379
-                  volumeMounts:
-                      - name: redis-storage
-                        mountPath: /var/lib/redis/dump.rdb
-            volumes:
-                - name: mongodb-storage
-                  persistentVolumeClaim:
-                      claimName: mongodb-pvc
-
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      name: redis
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis
+          ports:
+            - containerPort: 6379
+          volumeMounts:
+            - name: mongo-storage
+              mountPath: /var/lib/redis/dump.rdb
+      volumes:
+        - name: mongo-storage
+          persistentVolumeClaim:
+            claimName: mongo-pvc
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: redis-service
-    namespace: wanderlust
+  name: redis-service
+  namespace: wanderlust
 spec:
-    selector:
-        app: redis
-    ports:
-        - port: 6379
-          targetPort: 6379
-          protocol: TCP
+  selector:
+    app: redis
+  ports:
+    - port: 6379
+      targetPort: 6379
+      protocol: TCP
