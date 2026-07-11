@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: <Backend-Image>
+        image: iamsnyg/wanderlust-backend-beta:v1.0
         resources:
           limits:
             memory: "128Mi"
