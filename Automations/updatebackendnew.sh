@@ -12,9 +12,9 @@ current_url=$(sed -n "4p" $file_to_find) # Get the current URL from the .env.doc
 
 
 # Update the FRONTEND_URL in the .env.docker file if it doesn't match the current IPv4 address
-if[[ "$current_url" != "FRONTEND_URL=\"http://${ipv4_address}:5173\""]]; then
+if [[ "$current_url" != "FRONTEND_URL=\"http://${ipv4_address}:5173\"" ]]; then
     # Update the FRONTEND_URL in the .env.docker file
-    if[ -f $file_to_find ]; then
+    if [ -f "$file_to_find" ]; then
         # Update the FRONTEND_URL in the .env.docker file
         sed -i -e "s|FRONTEND_URL.*|FRONTEND_URL=\"http://${ipv4_address}:5173\"|g" $file_to_find 
     else
