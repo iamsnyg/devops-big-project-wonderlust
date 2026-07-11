@@ -1,6 +1,6 @@
 #!/bin/bash
 
-INSTANCE_ID="i-0394d7707cd65370b"  # Replace with your actual instance ID
+INSTANCE_ID="i-06d0ad19f7e9c0e4d"  # Replace with your actual instance ID
 
 # Get the public IPv4 address of the EC2 instance
 ipv4_address=$(aws ec2 describe-instances --instance-ids "$INSTANCE_ID" --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
