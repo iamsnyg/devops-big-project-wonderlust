@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: <Image>
+        image: iamsnyg/wanderlust-frontend-beta:v1.0
         resources:
           limits:
             memory: "128Mi"
